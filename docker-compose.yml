@@ -1,0 +1,19 @@
+services:
+
+  application:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: log-demo-app
+    ports:
+      - "5000:5000"
+
+  analyzer:
+    build:
+      context: ./analyzer
+      dockerfile: Dockerfile
+    container_name: ai-log-analyzer
+    ports:
+      - "8000:8000"
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
